@@ -1,26 +1,28 @@
 ---
-name: ml-feature-engineering
+name: ml-pipeline
 description: >
-  End-to-end ML feature engineering for quantitative trading research.
-  Covers feature creation, selection, transformation, anti-leakage validation,
-  pipeline automation, and model evaluation. Use when building or auditing
-  feature pipelines for strategy ML workflows.
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash(python:*)
-version: 1.0.0
+  Complete machine learning pipeline for trading: feature engineering, AutoML, deep learning, and financial RL.
+  Use for automated parameter sweeps, feature creation, model training, and anti-leakage validation.
+version: "2.0.0"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 metadata:
   consolidates:
-    - ml-feature-engineering-helper
-    - machine-learning-feature-engineering-toolkit
+    - ml-feature-engineering
+    - deep-learning-optimizer-5
+    - pytorch-lightning-2
+    - scikit-learn-ml-framework
     - automl-pipeline-builder-2
+    - ml-feature-engineering-helper
     - ml-fundamentals
+    - machine-learning-feature-engineering-toolkit
 ---
 
-# ML Feature Engineering
+# ML Pipeline
 
-Unified skill for feature engineering within a quant trading research system.
-Consolidates four prior skills into a single authoritative reference covering
+Unified skill for the complete ML pipeline within a quant trading research system.
+Consolidates eight prior skills into a single authoritative reference covering
 the full lifecycle: data validation, feature creation, selection,
-transformation, anti-leakage checks, pipeline automation, and deployment.
+transformation, anti-leakage checks, pipeline automation, deep learning optimization, and deployment.
 
 ---
 
@@ -220,7 +222,55 @@ For any feature engineering task, follow this sequence:
 
 ---
 
-## 8. Error Handling
+## 8. Deep Learning Optimization
+
+### 8.1 Optimizer Selection
+
+| Optimizer | Best For | Learning Rate |
+|-----------|----------|---------------|
+| Adam | Most cases, adaptive | 1e-3 to 1e-4 |
+| AdamW | Transformers, weight decay | 1e-4 to 1e-5 |
+| SGD + Momentum | Large batches, fine-tuning | 1e-2 to 1e-3 |
+| RAdam | Stability without warmup | 1e-3 |
+
+### 8.2 Learning Rate Scheduling
+
+- **OneCycleLR**: Best for short training, fast convergence
+- **CosineAnnealing**: Smooth decay, good generalization
+- **ReduceOnPlateau**: Adaptive when validation loss plateaus
+- **Warmup + Decay**: Standard for transformers
+
+### 8.3 Regularization Techniques
+
+- **Dropout**: 0.1-0.5 for fully connected layers
+- **L2 (Weight Decay)**: 1e-4 to 1e-2
+- **Batch Normalization**: Stabilizes training
+- **Early Stopping**: Monitor validation loss, patience 5-10 epochs
+
+### 8.4 PyTorch Lightning Integration
+
+```python
+import pytorch_lightning as pl
+
+class TradingModel(pl.LightningModule):
+    def configure_optimizers(self):
+        optimizer = torch.optim.AdamW(self.parameters(), lr=1e-4)
+        scheduler = torch.optim.lr_scheduler.OneCycleLR(
+            optimizer, max_lr=1e-3, total_steps=self.trainer.estimated_stepping_batches
+        )
+        return [optimizer], [scheduler]
+```
+
+### 8.5 Financial Reinforcement Learning
+
+- **State**: Market features, portfolio state, position
+- **Action**: Buy/Sell/Hold, position sizing
+- **Reward**: Risk-adjusted returns (Sharpe, Sortino)
+- **Frameworks**: Stable-Baselines3, RLlib, FinRL
+
+---
+
+## 9. Error Handling
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
@@ -232,7 +282,7 @@ For any feature engineering task, follow this sequence:
 
 ---
 
-## 9. Bundled Scripts
+## 10. Bundled Scripts
 
 All scripts live in `scripts/` within this skill directory.
 
@@ -248,7 +298,7 @@ All scripts live in `scripts/` within this skill directory.
 
 ---
 
-## 10. Resources
+## 11. Resources
 
 ### Frameworks
 
@@ -257,6 +307,9 @@ All scripts live in `scripts/` within this skill directory.
 - **Optuna** -- flexible hyperparameter optimisation.
 - **SHAP** -- model-agnostic feature importance.
 - **Feast / Tecton** -- feature store management.
+- **PyTorch Lightning** -- https://lightning.ai/docs/pytorch/stable/
+- **Stable-Baselines3** -- https://stable-baselines3.readthedocs.io/
+- **FinRL** -- https://github.com/AI4Finance-Foundation/FinRL
 
 ### Key References
 

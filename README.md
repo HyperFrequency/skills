@@ -4,39 +4,41 @@ Claude Code skills for algorithmic trading, backtesting, and quantitative analys
 
 ## Installation
 
-Copy skills to your Claude Code skills directory:
-
 ```bash
 # Copy all skills
 cp -r ./* ~/.claude/skills/
 
 # Or copy specific skills
-cp -r nautilus-trader ~/.claude/skills/
-cp -r tearsheet-generator ~/.claude/skills/
+cp -r strategy-workflow ~/.claude/skills/
+cp -r ml-pipeline ~/.claude/skills/
 ```
 
-## Available Skills
-
-### Core Trading Skills
+## Core Trading Skills
 
 | Skill | Description |
 |-------|-------------|
-| [nautilus-trader](./nautilus-trader/) | NautilusTrader platform for strategy development and Hyperliquid live trading |
-| [tearsheet-generator](./tearsheet-generator/) | Professional tearsheets with SVG visualizations using [QuantStats](https://github.com/ranaroussi/quantstats) |
-| [order-flow-opt](./order-flow-opt/) | Order flow MAE optimization with exhaustion-timed entries |
-| [backtest-optimize](./backtest-optimize/) | Comprehensive backtesting and optimization workflow |
+| [strategy-workflow](./strategy-workflow/) | Strategy development, backtesting, Optuna optimization, walk-forward validation |
+| [order-flow-opt](./order-flow-opt/) | MAE optimization, L2 exhaustion detection, 33-feature extraction |
+| [nautilus-trader](./nautilus-trader/) | NautilusTrader platform + Hyperliquid live trading |
+| [tearsheet-generator](./tearsheet-generator/) | Professional tearsheets with [QuantStats](https://github.com/ranaroussi/quantstats) SVG visualizations |
 
-### ML & Analysis Skills
+## ML & Analysis Skills
 
 | Skill | Description |
 |-------|-------------|
-| [ml-feature-engineering](./ml-feature-engineering/) | Machine learning feature engineering toolkit |
+| [ml-pipeline](./ml-pipeline/) | Feature engineering, AutoML, deep learning, financial RL |
+| [continuous-learning-pattern-extraction](./continuous-learning-pattern-extraction/) | Pattern learning and knowledge curation |
 | [strategy-translator](./strategy-translator/) | Translate strategies between frameworks |
-| [continuous-learning-pattern-extraction](./continuous-learning-pattern-extraction/) | Extract and learn patterns from trading data |
+
+## Reference Skills
+
+| Skill | Description |
+|-------|-------------|
+| [research-documentation](./research-documentation/) | API docs, Context7, arXiv research |
 
 ## Skill Format
 
-Each skill follows the Claude Code skill format with YAML frontmatter:
+Each skill uses YAML frontmatter:
 
 ```yaml
 ---
@@ -45,19 +47,7 @@ description: What the skill does and when to use it
 version: "1.0.0"
 allowed-tools: Read, Write, Edit, Bash
 ---
-
-# Skill Name
-
-## Overview
-...
 ```
-
-## Contributing
-
-1. Fork this repository
-2. Create your skill in a new directory
-3. Include proper YAML frontmatter
-4. Submit a pull request
 
 ## License
 
