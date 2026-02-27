@@ -35,6 +35,8 @@ cp -r ml-pipeline ~/.claude/skills/
 | Skill | Description |
 |-------|-------------|
 | [research-documentation](./research-documentation/) | API docs, Context7, arXiv research |
+| [arxiv-research-search](./arxiv-research-search/) | Search and analyze arXiv papers for quant research |
+| [context7-documentation-lookup](./context7-documentation-lookup/) | Context7 documentation and API reference lookup |
 
 ## Skill Format
 
